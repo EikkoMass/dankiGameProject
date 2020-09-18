@@ -1,0 +1,8 @@
+Na programação vai ser usado o conceito matemático cartesiano, no qual, todo elemento vai ser movimentado 
+e dimensionado com base nos eixos X e Y (e Z, mas na lógica de games usada no caso não vai ser aplicado), 
+com conceitos como por exemplo:
+
+dimensionarElemento(elemento, x, y)
+dimensionarElemento(Player, 10, 50)
+
+em um plano cartesiano ele (o player) seria dimensionado para o ponto onde se intersecciona o x com 10 e o y com 50 
