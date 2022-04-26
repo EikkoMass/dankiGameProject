@@ -34,7 +34,7 @@ public class Entity {
 	
 	private int maskx, masky, mheight, mwidth;
 	
-	public int depth; //camada de renderização da entidade
+	public int depth; //camada de renderizaï¿½ï¿½o da entidade
 	
 	private BufferedImage sprite;
 	
@@ -74,7 +74,7 @@ public class Entity {
 		return this.height;
 	}
 	
-	public void tick() { //toda entidade vai ter seu próprio tick e render
+	public void tick() { //toda entidade vai ter seu prï¿½prio tick e render
 		
 		
 		
@@ -120,7 +120,7 @@ public class Entity {
 	
 	}
 	
-	//ESSE MÉTODO NÃO FOI TESTADO!!!!!!!!! (Método de pixel perfect)
+	//ESSE Mï¿½TODO Nï¿½O FOI TESTADO!!!!!!!!! (Mï¿½todo de pixel perfect)
 																														//i seria para enviar o index de cada entidade, para selecionar o sprite sendo usado
 	public static boolean isColiddingPerfect(Entity e1, Entity e2, BufferedImage[] sprite1, BufferedImage[] sprite2, int i1, int i2) {
 																											//sprite da entidade

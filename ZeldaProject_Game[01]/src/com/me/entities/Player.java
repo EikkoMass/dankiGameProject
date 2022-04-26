@@ -12,12 +12,12 @@ import com.me.world.World;
 
 public class Player extends Entity{
 
-	public boolean right, left, up, down; //variáveis de movimento
-	public double speed = 1.2; //velocidade de movimentação do personagem
-	public int frames = 0, maxFrames = 5, index = 0, maxIndex = 3; //variáveis de animação
+	public boolean right, left, up, down; //variï¿½veis de movimento
+	public double speed = 1.2; //velocidade de movimentaï¿½ï¿½o do personagem
+	public int frames = 0, maxFrames = 5, index = 0, maxIndex = 3; //variï¿½veis de animaï¿½ï¿½o
 	private boolean moved = false; //indicador de movimento
-	public int leftDir = 0, rightDir = 1, upDir = 2, downDir = 3; //direções do personagem com respectivo valor para cada (variáveis de animação)
-	public int dir = downDir; //controla para onde o personagem está direcionado
+	public int leftDir = 0, rightDir = 1, upDir = 2, downDir = 3; //direï¿½ï¿½es do personagem com respectivo valor para cada (variï¿½veis de animaï¿½ï¿½o)
+	public int dir = downDir; //controla para onde o personagem estï¿½ direcionado
 	private BufferedImage[] rightPlayer;
 	private BufferedImage[] leftPlayer;
 	private BufferedImage[] upPlayer;
@@ -46,14 +46,14 @@ public class Player extends Entity{
 	public int jumpFrames = 18, jumpCur = 0, jumpSpeed = 2;
 	public boolean jumpUp = false, jumpDown = false;
 	
-	public double life = 100, maxLife = 100;	//na aula foi usado static para facilitar a manipulação da vida, pois, ao manipular
+	public double life = 100, maxLife = 100;	//na aula foi usado static para facilitar a manipulaï¿½ï¿½o da vida, pois, ao manipular
 	//a classe, o objeto da mesma se adapta
 	
 	
 	
 	public Player(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite); //como estendeu de Entity, o constructor tem que ser igual ao de entity 
-											//(isso valendo para o super também, que vai fazer exatamente o que o Entities requere que faça)
+											//(isso valendo para o super tambï¿½m, que vai fazer exatamente o que o Entities requere que faï¿½a)
 	
 		leftPlayer = new BufferedImage[4];
 		rightPlayer = new BufferedImage[4];
@@ -69,7 +69,7 @@ public class Player extends Entity{
 		
 	}
 	
-	public void revealMap() { //aplicar um blur para a identificação do mapa
+	public void revealMap() { //aplicar um blur para a identificaï¿½ï¿½o do mapa
 		//modelo fog of war
 		
 		int xx  = (int) (x / 16);
@@ -90,9 +90,9 @@ public class Player extends Entity{
 		World.tiles[xx+1+((yy+1)*World.WIDTH)].show = true;
 	}
 	
-	public void tick() { //por padrão Entity já possui um método tick, logo, nesse caso estamos reescrevendo em cima do
-						//padrão, sendo agora esse que vai ser executado, técnica de orientação a objetos, chamada de polimorfismo
-		depth = 1; //camada de renderização da entidade
+	public void tick() { //por padrï¿½o Entity jï¿½ possui um mï¿½todo tick, logo, nesse caso estamos reescrevendo em cima do
+						//padrï¿½o, sendo agora esse que vai ser executado, tï¿½cnica de orientaï¿½ï¿½o a objetos, chamada de polimorfismo
+		depth = 1; //camada de renderizaï¿½ï¿½o da entidade
 		
 		
 		//revealMap();
@@ -137,16 +137,16 @@ public class Player extends Entity{
 		
 		moved = false;
 		
-		if(right && World.isFree((int) (x + speed), this.getY(), z)) { //se a variável for true e o método for true
+		if(right && World.isFree((int) (x + speed), this.getY(), z)) { //se a variï¿½vel for true e o mï¿½todo for true
 			moved = true; //se movimentou
 			dir = rightDir; //andou para a direita
-			x+=speed; //apenas funciona por as variáveis em Entity serem protected, sendo assim, as classes filhas podem acessá-las sem problemas
+			x+=speed; //apenas funciona por as variï¿½veis em Entity serem protected, sendo assim, as classes filhas podem acessï¿½-las sem problemas
 			
 			
 		} else if(left && World.isFree((int) (x - speed), this.getY(), z)) {
 			moved = true; //se movimentou
 			dir = leftDir; //andou para a esquerda
-			x-=speed; //valor é incrementado com base no mesmo somado (ou diminuido) por speed
+			x-=speed; //valor ï¿½ incrementado com base no mesmo somado (ou diminuido) por speed
 		
 		}
 		
@@ -164,7 +164,7 @@ public class Player extends Entity{
 		}
 		
 		if(moved) { //se ele se movimentar
-			frames++; //incrementa frames (controlador de velocidade da animação)
+			frames++; //incrementa frames (controlador de velocidade da animaï¿½ï¿½o)
 			if(frames == maxFrames) { //se frames for igual a seu limite de frames (no caso, 5)
 				index++; //incrementa frames, assim trocando o sprite
 				frames = 0; //zera frames
@@ -174,8 +174,8 @@ public class Player extends Entity{
 				index = 0; //zera index
 			}
 		}
-		if(!moved) {//se ele não se movimentar
-			index = 0; //se ele não estiver se movimentando, vai ficar printado o primeiro sprite da ultima direção feita
+		if(!moved) {//se ele nï¿½o se movimentar
+			index = 0; //se ele nï¿½o estiver se movimentando, vai ficar printado o primeiro sprite da ultima direï¿½ï¿½o feita
 		}
 		
 			this.checkCollisionHealthPack();
@@ -195,53 +195,60 @@ public class Player extends Entity{
 			
 			if(shoot) {
 				shoot = false;
-				if(ammo > 0 && hasGun) {
-				//System.out.println("atirando");
-				//caso o player atire
-				ammo--;
-				Sound.hitBullet.play();
-				
-				int dx = 0, dy = 0;
-				
-				if(dir == rightDir) {
-					
-					dx = 1;
-					shootBalanceX = 17;
-					shootBalanceY = 8;
+				if(hasGun)
+				{
+					if(ammo > 0) {
+						//System.out.println("atirando");
+						//caso o player atire
+						ammo--;
+						Sound.hitBullet.play();
+						
+						int dx = 0, dy = 0;
+						
+						if(dir == rightDir) {
+							
+							dx = 1;
+							shootBalanceX = 17;
+							shootBalanceY = 8;
 
-					
-				}else if(dir == leftDir) {
-					
-					dx = -1;
-					shootBalanceX = -5;
-					shootBalanceY = 8;
+							
+						}else if(dir == leftDir) {
+							
+							dx = -1;
+							shootBalanceX = -5;
+							shootBalanceY = 8;
 
-					
-				}else if(dir == upDir) {
-					
-					dy = -1;
-					shootBalanceX = 2;
-					shootBalanceY = 2;
+							
+						}else if(dir == upDir) {
+							
+							dy = -1;
+							shootBalanceX = 2;
+							shootBalanceY = 2;
 
-					
-				}else {
-					
-					dy = 1;
-					shootBalanceX = 3;
-					shootBalanceY = 5;
+							
+						}else {
+							
+							dy = 1;
+							shootBalanceX = 3;
+							shootBalanceY = 5;
 
-				}
-				
-				BulletShoot bullet = new BulletShoot(this.getX() + shootBalanceX , this.getY() + shootBalanceY - z, 2, 2, null, dx, dy);
-				Game.bullets.add(bullet);
+						}
+						
+						BulletShoot bullet = new BulletShoot(this.getX() + shootBalanceX , this.getY() + shootBalanceY - z, 2, 2, null, dx, dy);
+						Game.bullets.add(bullet);
+						}
+						else if (ammo <= 0)
+						{
+							Sound.emptyGun.play();
+						}	
 				}
 			}
 			
 			if(mouseShoot) {
 				mouseShoot = false;
 				
-							//this.getX() this.getY() posição do player
-				double angle = 0; //calcula o ângulo levando em conta o player e aonde foi clicado na tela
+							//this.getX() this.getY() posiï¿½ï¿½o do player
+				double angle = 0; //calcula o ï¿½ngulo levando em conta o player e aonde foi clicado na tela
 				//retorna o angulo    					   y					  x
 				//System.out.println(angle);
 
@@ -276,7 +283,7 @@ public class Player extends Entity{
 
 				}
 				
-				angle = Math.atan2(mouseY - (this.getY() + shootBalanceY - Camera.y), mouseX - (this.getX() + shootBalanceX - Camera.x)); //calcula o ângulo levando em conta o player(localização de onde sai o tiro) e aonde foi clicado na tela
+				angle = Math.atan2(mouseY - (this.getY() + shootBalanceY - Camera.y), mouseX - (this.getX() + shootBalanceX - Camera.x)); //calcula o ï¿½ngulo levando em conta o player(localizaï¿½ï¿½o de onde sai o tiro) e aonde foi clicado na tela
 				double dx = Math.cos(angle), dy = Math.sin(angle);
 				
 				BulletShoot bullet = new BulletShoot(this.getX() + shootBalanceX, this.getY() + shootBalanceY - z, 2, 2, null, dx, dy);
@@ -293,15 +300,15 @@ public class Player extends Entity{
 	}
 	
 	public void updateCamera() {
-		Camera.x = Camera.clamp((this.getX()) - (Game.WIDTH / 2), 0, (World.WIDTH*16) - Game.WIDTH); //Camera está definindo seu x com base no x do player - metade da largura da tela do jogo
-		Camera.y = Camera.clamp((this.getY()) - (Game.HEIGHT / 2), 0, (World.HEIGHT*16) - Game.HEIGHT); //Camera está definindo seu x com base no y do player - metade da altura da tela do jogo
-		//centralizando a câmera no player									fazendo * o tamalho do Tile (para ficar no tamanho real do mapa)
+		Camera.x = Camera.clamp((this.getX()) - (Game.WIDTH / 2), 0, (World.WIDTH*16) - Game.WIDTH); //Camera estï¿½ definindo seu x com base no x do player - metade da largura da tela do jogo
+		Camera.y = Camera.clamp((this.getY()) - (Game.HEIGHT / 2), 0, (World.HEIGHT*16) - Game.HEIGHT); //Camera estï¿½ definindo seu x com base no y do player - metade da altura da tela do jogo
+		//centralizando a cï¿½mera no player									fazendo * o tamalho do Tile (para ficar no tamanho real do mapa)
 
-		//Camera.clamp(Atual, Min, Max) está pegando o xAtual, xMínimo e xMáximo que o Mapa pode alcançar (assim fazendo a colisão de extremos, evitando aparecer aquelas partes pretas nas laterais)
-		//											   yAtual, yMínimo e yMáximo
+		//Camera.clamp(Atual, Min, Max) estï¿½ pegando o xAtual, xMï¿½nimo e xMï¿½ximo que o Mapa pode alcanï¿½ar (assim fazendo a colisï¿½o de extremos, evitando aparecer aquelas partes pretas nas laterais)
+		//											   yAtual, yMï¿½nimo e yMï¿½ximo
 	}
 	
-	public void render(Graphics g) { //método reescrito, logo, descartando o padrão da classe pai
+	public void render(Graphics g) { //mï¿½todo reescrito, logo, descartando o padrï¿½o da classe pai
 		if(!isDamaged) {
 			
 			switch(index) {
@@ -324,7 +331,7 @@ public class Player extends Entity{
 			
 			if(dir == rightDir) {
 				g.drawImage(rightPlayer[index], this.getX() - Camera.x, this.getY() - Camera.y - z, null); //os sprites mudam de acordo com o valor de index, que
-				//é alterado com o decorrer da movimentação do personagem, usando as variáveis moved, index e frames
+				//ï¿½ alterado com o decorrer da movimentaï¿½ï¿½o do personagem, usando as variï¿½veis moved, index e frames
 				
 				if(hasGun) {
 					//se tiver a arma e estiver andando para a direita, desenhar sprite direito da arma
@@ -359,10 +366,10 @@ public class Player extends Entity{
 			
 		}
 		
-		//Os x e y das entidades são double, então usamos .getX() e .getY() para colocá-las, pois no processo, os metodos
-		//convertem para inteiro as variáveis.
+		//Os x e y das entidades sï¿½o double, entï¿½o usamos .getX() e .getY() para colocï¿½-las, pois no processo, os metodos
+		//convertem para inteiro as variï¿½veis.
 		
-		//a posição é diminuida pelo x e y da câmera para manter a tela centralizada no player (assim fazendo o player perder velocidade)
+		//a posiï¿½ï¿½o ï¿½ diminuida pelo x e y da cï¿½mera para manter a tela centralizada no player (assim fazendo o player perder velocidade)
 		
 		
 		if(isJumping) {

@@ -20,6 +20,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.awt.image.BufferStrategy;
@@ -38,8 +39,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 
-	//<!> ATENÇÃO esse código reaproveitado de GraficosComJava (Java Project) > AnimacaoRotacionamento (package) > Game (class) 
-	//Se deseja ver os comentários desse código, vá para aquela class
+	//<!> ATENï¿½ï¿½O esse cï¿½digo reaproveitado de GraficosComJava (Java Project) > AnimacaoRotacionamento (package) > Game (class) 
+	//Se deseja ver os comentï¿½rios desse cï¿½digo, vï¿½ para aquela class
 
 
 	//criada pasta res para armazenamento de sprites
@@ -65,8 +66,8 @@ import javax.swing.JFrame;
 		public InputStream stream3  = ClassLoader.getSystemClassLoader().getResourceAsStream("BebasNeue-Regular.otf"); 
 		public InputStream stream4  = ClassLoader.getSystemClassLoader().getResourceAsStream("BebasNeue-Regular.otf"); 
 
-		//não é possível reaproveitar o mesmo InputStream
-		//(inputStream está sendo usado para criação das fontes abaixo)
+		//nï¿½o ï¿½ possï¿½vel reaproveitar o mesmo InputStream
+		//(inputStream estï¿½ sendo usado para criaï¿½ï¿½o das fontes abaixo)
 		public static Font newFont35, newFont170, newFont14;
 		public static Font newFont70;
 		
@@ -76,7 +77,7 @@ import javax.swing.JFrame;
 		
 		private BufferedImage image;
 		public static Spritesheet spritesheet; // importar com.me.graficos
-		//estático para Player conseguir usar
+		//estï¿½tico para Player conseguir usar
 		
 		public static World world;
 		public Menu menu;
@@ -86,7 +87,7 @@ import javax.swing.JFrame;
 		public int[] lightMapPixels;
 		public static int[] minimapaPixels;
 		
-		public static int entrada = 1, comecar = 2, jogando = 3, estadoCena = entrada; //variáveis de Cutscene
+		public static int entrada = 1, comecar = 2, jogando = 3, estadoCena = entrada; //variï¿½veis de Cutscene
 		public int timeCena = 0, maxTime = 60*3;
 		public static List<Entity> entities; //importar java.util.List e package com.me.entities
 		//agora temos uma lista com slots infinitos para entidades
@@ -103,10 +104,10 @@ import javax.swing.JFrame;
 		
 		public int mx, my;
 		
-		//public int xx, yy; //para a manipulação de pixels em drawRectangleExample(xx, yy);
+		//public int xx, yy; //para a manipulaï¿½ï¿½o de pixels em drawRectangleExample(xx, yy);
 		
 		
-		//lista estática para uso na criação e localização de inimigos (Class: World / Enemy)
+		//lista estï¿½tica para uso na criaï¿½ï¿½o e localizaï¿½ï¿½o de inimigos (Class: World / Enemy)
 		
 		public synchronized void start() {
 			thread = new Thread(this);
@@ -126,8 +127,7 @@ import javax.swing.JFrame;
 		
 		
 		public Game() {
-			
-			
+				
 			try {
 																		//35 float (equivalente a 35 pixels)
 				newFont35 = Font.createFont(Font.TRUETYPE_FONT, stream).deriveFont(35f); //adicionando uma nova fonte ao jogo
@@ -142,10 +142,10 @@ import javax.swing.JFrame;
 			}
 			
 			
-			Sound.musicBackground.loop();
+			Sound.musicBackgroundAlchemy.loop();
 			newWorld = "Map"+CUR_LEVEL+".png";
 			rand = new Random();
-			setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE)); //modelo padrão
+			setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE)); //modelo padrï¿½o
 			//setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //pega o tamanho da tela
 			
 			this.addKeyListener(this); //implementa eventos de clique do teclado na classe Game
@@ -157,7 +157,7 @@ import javax.swing.JFrame;
 			
 			
 			try {
-				lightMap = ImageIO.read(getClass().getResource("/lightMap.png"));
+				lightMap = ImageIO.read(getClass().getResource("/lightMap2.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -176,7 +176,7 @@ import javax.swing.JFrame;
 			//Iniciando ArrayList
 			
 			entities = new ArrayList<Entity>(); //importar java.util.ArrayList
-			//armazenará todas as entidades do jogo, como players, inimigos, npc's, etc.
+			//armazenarï¿½ todas as entidades do jogo, como players, inimigos, npc's, etc.
 			
 			enemies = new ArrayList<Enemy>();
 			bullets = new ArrayList<BulletShoot>();
@@ -187,8 +187,8 @@ import javax.swing.JFrame;
 			
 			
 			entities.add(player); //adicionamos uma entidade no ArrayList, no caso, player
-			world = new World("/"+newWorld); //como definimos a localização de player a partir da variável estática em Game,
-			//primeiro precisamos declarar a veriável player, depois o mapa
+			world = new World("/"+newWorld); //como definimos a localizaï¿½ï¿½o de player a partir da variï¿½vel estï¿½tica em Game,
+			//primeiro precisamos declarar a veriï¿½vel player, depois o mapa
 			
 			minimapa = new BufferedImage(world.WIDTH, world.HEIGHT, BufferedImage.TYPE_INT_RGB);
 			minimapaPixels = ((DataBufferInt)minimapa.getRaster().getDataBuffer()).getData();
@@ -243,7 +243,7 @@ import javax.swing.JFrame;
 			
 		}
 		
-		public void tick() { //o jogo é separado com um mesmo tick / render com um switch case determinando o que vai rodar em cada
+		public void tick() { //o jogo ï¿½ separado com um mesmo tick / render com um switch case determinando o que vai rodar em cada
 							//gameState (sistema semelhante a um processo de rotas de um website)
 			//tick das entidades
 			switch(gameState) {
@@ -263,7 +263,7 @@ import javax.swing.JFrame;
 					Entity e = entities.get(i); //pega cada uma das entidades do ArrayList
 					
 					if(e instanceof Player && npc.isReading == true) {
-						//esta Entidade é um Player
+						//esta Entidade ï¿½ um Player
 						continue;
 					}
 					
@@ -297,7 +297,7 @@ import javax.swing.JFrame;
 						
 						player.updateCamera();
 					}else {
-					 System.out.println("Caminhada da cutscene concluída!");
+					 System.out.println("Caminhada da cutscene concluï¿½da!");
 					 player.index = 0;
 					 
 					 Game.estadoCena = Game.comecar;
@@ -330,7 +330,7 @@ import javax.swing.JFrame;
 			}
 			
 			if((enemies.size() == 0) && gameState.equals("NORMAL")) { //para o random map, esse if causa conflito
-				//próxima fase
+				//prï¿½xima fase
 				CUR_LEVEL++;
 				
 				if(CUR_LEVEL > MAX_LEVEL) {
@@ -376,7 +376,7 @@ import javax.swing.JFrame;
 			}
 		}
 	
-		/*public void drawRectangleExample(int xoff, int yoff) {// quadrado desenhado totalmente com manipulação de pixels
+		/*public void drawRectangleExample(int xoff, int yoff) {// quadrado desenhado totalmente com manipulaï¿½ï¿½o de pixels
 			
 			for(int xx = 0; xx < 32; xx++) {
 				
@@ -431,9 +431,9 @@ import javax.swing.JFrame;
 				return; 
 			}
 			
-			Graphics g = image.getGraphics(); //image é usado para desenhar o desejado, mas não para mostrar
+			Graphics g = image.getGraphics(); //image ï¿½ usado para desenhar o desejado, mas nï¿½o para mostrar
 			
-			//agora g é image.getGraphics()
+			//agora g ï¿½ image.getGraphics()
 			
 			
 			g.setColor(new Color(0,0,0)); 
@@ -446,7 +446,7 @@ import javax.swing.JFrame;
 			
 			//render das entidades
 			for(int i = 0; i < entities.size(); i++) {
-				Entity e = entities.get(i); //pega cada uma das entidades do ArrayList (pega uma por uma por causa da estrutura de repetição for)
+				Entity e = entities.get(i); //pega cada uma das entidades do ArrayList (pega uma por uma por causa da estrutura de repetiï¿½ï¿½o for)
 				e.render(g); //e renderiza
 			}
 			
@@ -461,8 +461,8 @@ import javax.swing.JFrame;
 			g.dispose(); 
 			
 			
-			g = bs.getDrawGraphics(); //bs é usado para "pendurar" o que for desenhado
-			//agora g é bs.getDrawGraphics()
+			g = bs.getDrawGraphics(); //bs ï¿½ usado para "pendurar" o que for desenhado
+			//agora g ï¿½ bs.getDrawGraphics()
 			
 			//drawRectangleExample(xx, yy);
 			
@@ -472,15 +472,15 @@ import javax.swing.JFrame;
 			g.setColor(new Color(255, 255, 255, 170));
 			g.setFont(newFont35);
 			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); //aplicar anti-analiasing no jogo (diminuir serrilhado ds imagens)
-			g.drawString("" + player.ammo, 18 + (Entity.BULLET_EN.getWidth() * SCALE), 22 + (Entity.BULLET_EN.getHeight() * SCALE)); //esses 3 fazem o contador de vida, por isso que ele não é pixelado, por não usar escala
+			g.drawString("" + player.ammo, 18 + (Entity.BULLET_EN.getWidth() * SCALE), 22 + (Entity.BULLET_EN.getHeight() * SCALE)); //esses 3 fazem o contador de vida, por isso que ele nï¿½o ï¿½ pixelado, por nï¿½o usar escala
 			
-			//manipulação de opacidade de elementos é uma funcionalidade padrão da classe Graphics2D, então para
-			//usá-lo, é necesário converter g para o desejado
+			//manipulaï¿½ï¿½o de opacidade de elementos ï¿½ uma funcionalidade padrï¿½o da classe Graphics2D, entï¿½o para
+			//usï¿½-lo, ï¿½ necesï¿½rio converter g para o desejado
 															//pegar instancia					//o quanto de opacidade desejada (em float)
-			((Graphics2D) g).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.7)); //aplica opacidade nos próximos elementos
-			 				//setar composição	composição Alfa (tranparencia)	//?
+			((Graphics2D) g).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.7)); //aplica opacidade nos prï¿½ximos elementos
+			 				//setar composiï¿½ï¿½o	composiï¿½ï¿½o Alfa (tranparencia)	//?
 			 
-			g.drawImage(Entity.BULLET_EN, 10, 30, Entity.BULLET_EN.getWidth() * SCALE , Entity.BULLET_EN.getHeight() * SCALE, null); //ilustração de bullet para identificar quantas munições estão disponíveis
+			g.drawImage(Entity.BULLET_EN, 10, 30, Entity.BULLET_EN.getWidth() * SCALE , Entity.BULLET_EN.getHeight() * SCALE, null); //ilustraï¿½ï¿½o de bullet para identificar quantas muniï¿½ï¿½es estï¿½o disponï¿½veis
 			
 			
 			World.renderMinimap();
@@ -524,13 +524,13 @@ import javax.swing.JFrame;
 				
 			}
 			
-			/* rotacionamento de objetos a partir na movimentação do mouse
+			/* rotacionamento de objetos a partir na movimentaï¿½ï¿½o do mouse
 			 * 
 			 * 
 			Graphics2D g2 = (Graphics2D) g;
 			double angle = Math.atan2(my - 200 + 25, mx - 200 + 25);
 			g2.rotate(angle, 200 + 25, 200 + 25);
-					// radianos,  x de ponto de referência, y de ponto de referência
+					// radianos,  x de ponto de referï¿½ncia, y de ponto de referï¿½ncia
 			g.setColor(Color.red);
 			g.fillRect(200, 200, 50, 50);
 			*/
@@ -628,9 +628,17 @@ import javax.swing.JFrame;
 			if(e.getKeyCode() == e.VK_A || e.getKeyCode() == e.VK_LEFT) {
 				//System.out.println("Esquerda");	
 				player.left = true;
+				
+				if(gameState.equals("MENU")) {
+					menu.left = true;
+				}
 			}else if(e.getKeyCode() == e.VK_D || e.getKeyCode() == e.VK_RIGHT) {
 				//System.out.println("Direita");
 				player.right = true;
+				
+				if(gameState.equals("MENU")) {
+					menu.right = true;
+				}
 			}
 			
 			if(e.getKeyCode() == e.VK_Z || e.getKeyCode() == e.VK_E) {
@@ -682,9 +690,9 @@ import javax.swing.JFrame;
 			player.mouseShoot = true;
 			
 			
-			//pegamos a localização do mouse no jogo (localização na janela, não no mapa), dividindo a mesma pela escala por causa do jogo estar esticado
-			player.mouseX = e.getX() / SCALE; //  / por 4 pois a escala esticada do jogo é x4
-			//player.mouseX = (e.getX() / SCALE) + Camera.x seria o modo de capturar o x e y do mapa e não da janela (JFrame), como estamos fazendo;
+			//pegamos a localizaï¿½ï¿½o do mouse no jogo (localizaï¿½ï¿½o na janela, nï¿½o no mapa), dividindo a mesma pela escala por causa do jogo estar esticado
+			player.mouseX = e.getX() / SCALE; //  / por 4 pois a escala esticada do jogo ï¿½ x4
+			//player.mouseX = (e.getX() / SCALE) + Camera.x seria o modo de capturar o x e y do mapa e nï¿½o da janela (JFrame), como estamos fazendo;
 			player.mouseY = e.getY() / SCALE;
 			
 			//System.out.println(player.mouseX);

@@ -18,10 +18,10 @@ import com.me.world.World;
 
 public class Menu {
 
-	public String[] options = {"New Game", "Load Game", "Quit Game"};
+	public String[] options = {"New Game", "Load Game", "Options", "Quit Game"};
 	public int currentOption = 0;
 	public int maxOption = options.length - 1;
-	public boolean up, down, enter;
+	public boolean up, down, left, right, enter;
 	public static boolean pause, saveExists, sameGame;
 	
 	
@@ -78,8 +78,11 @@ public class Menu {
 				}
 				
 				break;
+			
+			case 2: //options
+				break;
 				
-			case 2: //Exit Game
+			case 3: //Exit Game
 				System.exit(0);
 				break;
 			
@@ -131,7 +134,7 @@ public class Menu {
 			String current = val1[i];
 			current+=":";
 			char[] value = Integer.toString(val2[i]).toCharArray();
-			//pegamos o valor de val2[i] em string e depois adicionamos a string inteira em um unico array de char (o array inteiro é uma palavra em String)
+			//pegamos o valor de val2[i] em string e depois adicionamos a string inteira em um unico array de char (o array inteiro ï¿½ uma palavra em String)
 		
 			for(int j = 0; j < value.length; j++) {
 				value[j]+=encode; //criptografando o save do jogo
@@ -141,7 +144,7 @@ public class Menu {
 				write.write(current);
 				
 				if(i < val1.length - 1) //se for a ultima casa o array val1
-					write.newLine(); //pule uma (faça uma nova) linha no documento
+					write.newLine(); //pule uma (faï¿½a uma nova) linha no documento
 				
 				
 			}catch(IOException e) {
@@ -158,7 +161,7 @@ public class Menu {
 	
 	public static String loadGame(int encode) {
 		String line = "";
-		File file = new File("save.txt"); //objeto que possui a capacidade de armazenar arquivos externos para manipulação
+		File file = new File("save.txt"); //objeto que possui a capacidade de armazenar arquivos externos para manipulaï¿½ï¿½o
 	
 		if(file.exists()) { // se o arquivo existir dentro do objeto
 			
@@ -170,13 +173,13 @@ public class Menu {
 					while((singleLine = reader.readLine()) != null) { //se ambos forem iguais e ao mesmo tempo diferentes de null
 					
 						String[] trans = singleLine.split(":");
-						//split separa partes de variáveis a partir de algum caractere desejado
+						//split separa partes de variï¿½veis a partir de algum caractere desejado
 						
 						/*Por exemplo, o valor seria String string = "level:3";
 						 * 
 						 * String[] trans = string.split(":");
 						 * 
-						 * A linha acima irá resultar no array:
+						 * A linha acima irï¿½ resultar no array:
 						 * 
 						 * trans[0] = level;
 						 * trans[1] = t4e4s4t4e4;
@@ -188,9 +191,9 @@ public class Menu {
 						for(int i = 0; i < val.length; i++) {
 							val[i]-=encode; //tira a criptografia da letra no charArray
 							
-							//Pense que você está manipulando um Array de char:
+							//Pense que vocï¿½ estï¿½ manipulando um Array de char:
 							
-							/*Os valores criptografados estarão da seguinte forma:
+							/*Os valores criptografados estarï¿½o da seguinte forma:
 							 * 
 							 *  't' 'e' 's' 't' 'e' (valor que queremos, sem criptografia)
 							 * 
@@ -205,15 +208,15 @@ public class Menu {
 							 * val[8] = 'e';
 							 * val[9] = '4'; //criptografia
 							 * 
-							 * nós aplicamos no for a senguinte função
+							 * nï¿½s aplicamos no for a senguinte funï¿½ï¿½o
 							 * 
-							 * enconde = 4, pois esse é nosso valor de criptografia
+							 * enconde = 4, pois esse ï¿½ nosso valor de criptografia
 							 * 
 							 * val[i] -= encode; 
 							 * 
 							 * encode -> 4
-							 * val[i] --> se for = encode, ele apagará o valor armazenado deixando a casa vazia.
-							 * caso contrário, manterá o valor
+							 * val[i] --> se for = encode, ele apagarï¿½ o valor armazenado deixando a casa vazia.
+							 * caso contrï¿½rio, manterï¿½ o valor
 							 * */
 							
 							
@@ -238,7 +241,7 @@ public class Menu {
 					
 				}
 				
-			}catch(FileNotFoundException e) { //caso não encontre o arquivo
+			}catch(FileNotFoundException e) { //caso nï¿½o encontre o arquivo
 				
 			}
 			
@@ -253,7 +256,7 @@ public class Menu {
 		for(int i = 0; i < spl.length; i++) {
 			String[] spl2 = spl[i].split(":");
 			
-			switch(spl2[0]) { //nunca passará de 0 e 1 no for(){}
+			switch(spl2[0]) { //nunca passarï¿½ de 0 e 1 no for(){}
 			
 			case "level":
 				
